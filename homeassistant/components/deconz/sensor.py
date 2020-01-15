@@ -141,6 +141,12 @@ class DeconzSensor(DeconzDevice):
         elif self._device.type in Daylight.ZHATYPE:
             attr[ATTR_DAYLIGHT] = self._device.daylight
 
+        elif (
+            self._device.type in LightLevel.ZHATYPE
+            and self._device.daylight is not None
+        ):
+            attr[ATTR_DAYLIGHT] = self._device.daylight
+
         elif self._device.type in LightLevel.ZHATYPE and self._device.dark is not None:
             attr[ATTR_DARK] = self._device.dark
 
